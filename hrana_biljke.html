@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smrznuti Proizvodi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 350px;
+        }
+        .product-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-details {
+            background: white;
+            padding: 600px;
+            display: flex;
+            flex-direction: row-reverse;
+            max-width: 1200px;
+            width: 100%;
+            border-radius: 20px;
+            align-items: center;
+            
+        }
+        .product-details img {
+            width: 60%; /* Povećava sliku */
+            height: auto;
+            object-fit: cover;
+            margin-left: 50px; /* Pomiče sliku desno */
+        }
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            text-align: left;
+            font-size: 1.2em; /* Povećava tekst */
+            margin-right: 50px; /* Pomiče tekst levo */
+        }
+        .close-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .header-section {
+            background-color: #000e38;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-section {
+            background-color: #000e38;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: absolute;
+            width: 100%;
+        }
+
+        .header-title {
+            font-size: 4rem;
+            margin: 0 0 40px 0;
+        }
+
+        .nav-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-item {
+            color: #d3d3d3;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: transparent;
+            transition: width 0.4s ease;
+        }
+
+        .nav-item:hover::after, .nav-item.active::after {
+            width: 100%;
+        }
+
+        .nav-item:nth-child(1):hover, .nav-item:nth-child(1).active {
+            color: #0044cc;
+        }
+
+        .nav-item:nth-child(1):hover::after {
+            background-color: #0044cc;
+        }
+
+        .nav-item:nth-child(2):hover, .nav-item:nth-child(2).active {
+            color: #cc0000;
+        }
+
+        .nav-item:nth-child(2):hover::after {
+            background-color: #cc0000;
+        }
+
+        .nav-item:nth-child(3):hover, .nav-item:nth-child(3).active {
+            color: #008000;
+        }
+
+        .nav-item:nth-child(3):hover::after {
+            background-color: #008000;
+        }
+
+        .nav-item:nth-child(4):hover, .nav-item:nth-child(4).active {
+            color: #ff6600;
+        }
+
+        .nav-item:nth-child(4):hover::after {
+            background-color: #ff6600;
+        }
+
+        .nav-item:nth-child(5):hover, .nav-item:nth-child(5).active {
+            color: #cfcfb0;
+        }
+
+        .nav-item:nth-child(5):hover::after {
+            background-color: #cfcfb0;
+        }
+
+        .nav-item:nth-child(6):hover, .nav-item:nth-child(6).active {
+            color: #7d8f7a;
+        }
+
+        .nav-item:nth-child(6):hover::after {
+            background-color: #7d8f7a;
+        }
+
+        .nav-item:nth-child(7):hover, .nav-item:nth-child(7).active {
+            color: #00b300;
+        }
+
+        .nav-item:nth-child(7):hover::after {
+            background-color: #00b300;
+        }
+
+        .nav-item:nth-child(8):hover, .nav-item:nth-child(8).active {
+            color: #ff4500;
+        }
+
+        .nav-item:nth-child(8):hover::after {
+            background-color: #ff4500;
+        }
+        /* Linija ispod aktivne stavke */
+.nav-item.active::after {
+    width: 100%; /* Linija ispod aktivne stavke */
+    background-color: currentColor; /* Usklađuje boju sa tekstom */
+}
+
+
+        .content-section {
+            padding: 20px;
+        }
+
+        .section {
+            height: 800px; /* Simulira duži sadržaj */
+        }
+        .product {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    
+}
+
+.product.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.nav-item.active {
+        color:  #ff4500;
+    }
+    .product:hover  {
+         transform: scale(1.1); 
+        }
+        .product {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            display: block;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-section">
+        <h1 class="header-title">Istražite naš asortiman svežih namirnica</h1>
+        <nav class="nav-section">
+            <a href="smrznuta_hrana.html"class="nav-item">Svi prozivodi</a>
+            <a href="hrana_riba.html"class="nav-item">Riba</a>
+            <a href="hrana_voce.html" class="nav-item" >Voće</a>
+            <a href="hrana_povrce.html" class="nav-item">Povrće</a>
+            <a href="hrana_mesavine.html" class="nav-item">Mešavine</a>
+            <a href="hrana_gotova.html" class="nav-item">Gotova jela</a>
+            <a href="hrana_pecurke.html" class="nav-item">Pečurke</a>
+            <a href="hrana_biljke.html" class="nav-item active">Biljke</a>
+        </nav>
+    </header>
+    <div id="products"></div>
+    <div id="productPage" class="product-page" style="display: none;">
+        <div class="product-details">
+            <img id="productImage" src="" alt="">
+            <div class="product-info">
+                <h2 id="productName"></h2>
+                <p id="productDescription"></p>
+                <button class="close-btn" onclick="closeProduct()">Zatvori</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const products = [
+           "Kopriva", "Pucavac","Sremus", 
+        ].map((name, i) => ({
+            id: i + 1,
+            name: name,
+            image: "image.png",
+            description: `Ovo je smrznuti proizvod: ${name}. Kvalitetno smrznuto voće/povrće.`
+        }));
+
+        const productsContainer = document.getElementById("products");
+        const productPage = document.getElementById("productPage");
+        const productImage = document.getElementById("productImage");
+        const productName = document.getElementById("productName");
+        const productDescription = document.getElementById("productDescription");
+
+        products.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("product");
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <p>${product.name}</p>
+            `;
+            productDiv.addEventListener("click", () => openProduct(product));
+            productsContainer.appendChild(productDiv);
+        });
+
+        function openProduct(product) {
+            productImage.src = product.image;
+            productName.textContent = product.name;
+            productDescription.textContent = product.description;
+            productPage.style.display = "flex";
+        }
+
+        function closeProduct() {
+            productPage.style.display = "none";
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+    const products = document.querySelectorAll(".product");
+
+    function checkScroll() {
+        products.forEach(product => {
+            const productPosition = product.getBoundingClientRect().top;
+            if (productPosition < window.innerHeight - 100) {
+                product.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    checkScroll();
+});
+    </script>
+</body>
+</html>

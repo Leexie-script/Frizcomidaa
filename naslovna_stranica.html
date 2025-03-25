@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Video Sekcija</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <section class="hero">
+        <video autoplay loop muted playsinline>
+            <source src="Chocolate (1).mp4" type="video/mp4">
+            Vaš pregledač ne podržava HTML5 video.
+        </video>
+        <div class="overlay"></div>
+    </section>
+
+    <section class="content">
+        <div class="text-content">
+            <h1>Strast za kvalitetom – Svežina u svakom zalogaju</h1>
+            <p>Bavimo se proizvodnjom i izvozom pažljivo odabranog smrznutog voća i povrća vrhunskog kvaliteta. Naš proces brzog zamrzavanja čuva prirodnu svežinu, ukus i nutritivne vrednosti. Sa sertifikovanom proizvodnjom i globalnom isporukom, garantujemo kvalitet u svakom pakovanju.</p>
+        </div>
+        <div class="image-content">
+            <img src="image.png" alt="Slika proizvoda">
+        </div>
+    </section>
+    <section class="products">
+        <h2>NAŠI PROIZVODI</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="image.png" alt="Proizvod 1">
+                <p>Proizvod 1</p>
+            </div>
+            <div class="product">
+                <img src="image.png" alt="Proizvod 2">
+                <p>Proizvod 2</p>
+            </div>
+            <div class="product">
+                <img src="image.png" alt="Proizvod 3">
+                <p>Proizvod 3</p>
+            </div>
+            <div class="product">
+                <img src="image.png" alt="Proizvod 4">
+                <p>Proizvod 4</p>
+            </div>
+            <div class="product">
+                <img src="image.png" alt="Proizvod 5">
+                <p>Proizvod 5</p>
+            </div>
+            <div class="product">
+                <img src="image.png" alt="Proizvod 6">
+                <p>Proizvod 6</p>
+            </div>
+        </div>
+        <button class="explore-btn">Istražite naše proizvode</button>
+    </section>
+    <section class="why-choose-us">
+        <div class="why-text">
+            <h2>Zašto izabrati nas?</h2>
+            <p>- 100% Prirodno – Bez aditiva i konzervansa.</p>
+            <p>- HACCP i ISO Sertifikati – Najviši standardi kvaliteta.</p>
+            <p>- Globalna Dostava – Brza isporuka širom sveta.</p>
+        </div>
+    </section>
+    <div class="container">
+        <img src="test kuhinja.png" alt="Logo" class="logo">
+        <div class="section-title">Kuhinja</div>
+        <p class="description">
+            Pripremite vaše obroke uz recepte i proizvode od vašeg pouzdanog dobavljača,<br>
+            uz korištenje malo mašte i truda napravite vaše omiljene obroke sa nama.
+        </p>
+        <div class="image-container">
+            <a href="kasa.html" class="image-box">
+                <img src="KASA SA BOROVNICAMA.png" alt="Kasa sa frizcomida borovnicama">
+                <div class="caption">Kasa sa frizcomida borovnicama</div>
+            </a>
+            <a href="dorucak.html" class="image-box">
+                <img src="AVOKADO JAAJ.png" alt="Doručak uz frizcomid avokado">
+                <div class="caption">Doručak uz frizcomid avokado</div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 90vh; /* Puna visina ekrana */
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Blagi tamni overlay */
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+
+}
+
+.text-content {
+    flex: 1;
+    max-width: 50%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 20px;
+    margin-left: -350px;
+    
+}
+
+.text-content p {
+    font-size: 45px;
+    color: #333;
+    text-align: center;
+    margin-left: -350px;
+    
+    
+}
+.image-content img:hover {
+    transform: scale(1.05);
+}
+.image-content {
+    flex: 1;
+    text-align: center;
+}
+
+.image-content img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    
+}
+
+
+.products {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.products h2 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.product {
+    width: 30%;
+    text-align: center;
+}
+
+.product img {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product img:hover {
+    transform: scale(1.05);
+}
+
+.product p {
+    font-size: 28px;
+    font-weight: 500;
+    color: #0A2540;
+    margin-top: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.product p:hover {
+    color: #E63946;
+}
+
+.explore-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.explore-btn:hover {
+    background-color: #B0B0B0;
+}
+.why-choose-us {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.why-text h2 {
+    font-size: 60px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #0A2540;
+    margin-bottom: 15px;
+    margin-left: -350px;
+}
+
+.why-text p {
+    font-size: 35px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    margin-bottom: 10px;
+    margin-left: -350px;
+}
+.container {
+            text-align: center;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            color: red;
+            font-weight: bold;
+            font-size: 38px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .description {
+            margin: 10px auto 30px;
+            max-width: 600px;
+            font-size: 26px;
+            line-height: 1.3;
+            color: black;
+            text-align: center;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .image-box {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            width: 550px;
+            height: 350px;
+            transition: transform 0.3s;
+        }
+        .image-box img {
+            width: 100%;
+            height: 350px;
+            display: block;
+           
+        }
+        .caption {
+            width: 100%;
+            background: white;
+            border: 2px solid gray;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: -10px;
+            color: black;
+        }
+        .image-box:hover {
+            transform: scale(1.05);
+        }
+
+</style>

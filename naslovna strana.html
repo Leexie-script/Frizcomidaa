@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smrznuto Voće i Povrće</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f8f8f8; height: 2550px; }
+        
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .header img {
+            width: 100%;
+            height: 96%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .fade-text {
+            position: absolute;
+            top: 25%;
+            left: 5%;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .explore-btn {
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            padding: 15px 30px;
+            background-color: #053049;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        .explore-btn:hover {
+            background-color: #190d5c;
+        }
+        .recipe-card {
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: white;
+            margin-left: 300px;
+        }
+        .recipe-card img {
+            width: 100%;
+            display: block;
+        }
+        .recipe-content {
+            padding: 20px;
+            height: 150px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .recipe-content h3 {
+            font-size: 20px;
+            color:#000e38;
+            margin-bottom: 20px;
+
+        }
+            
+        
+        .recipe-content p {
+            color: gray;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .recipe-info {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #333;
+            align-items: center;
+        }
+        .recipe-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        /* Efekat za pojavljivanje */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .kuhinja-box {
+            text-align: center;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .kuhinja-box img {
+            width: 80px;
+            margin-bottom: 10px;
+            margin-right: 28px;
+           
+        }
+
+        .kuhinja-box h3 {
+            color: red;
+            font-weight: bold;
+            font-size: 25px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            margin-right: 20px;
+            font-family: 'Poppins',sans-serif;
+        }
+
+        .kuhinja-box p {
+            font-size:21px;
+            color: black;
+            line-height: 1.3;
+            font-family: 'Poppins',sans-serif;
+        }
+       
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="header fade-in">
+        <img src="Snimak ekrana 2025-02-23 002150.png" alt="Naslovna Slika">
+        <div class="fade-text"> 
+            <p>Nase neodoljivo voce</p>
+            <p>iz prodavnice u vas zamrzivac</p>
+        </div>
+        <a href="smrznuta_hrana.html" class="explore-btn">Istražite naše proizvode</a>
+    </div>
+    <div class="kuhinja-box fade-in">
+        <img src="recepat.real.png" alt="Kuhinja Ikonica"> 
+        <h3>Kuhinja</h3>
+        <p>Pripremite vaše obroke uz recepte i proizvode od vašeg pouzdanog dobavljača, 
+           uz korištenje malo mašte i truda napravite vaše omiljene obroke sa nama.</p>
+    </div>
+    
+    <div class="recipe-card fade-in">
+        <img src="kolac_borovnice_recept.webp" alt="Pašteta od oslića">
+        <div class="recipe-content">
+
+            <h3>Kolac od malina</h3>
+            <div class="recipe-info">
+          
+               
+            </div>
+        </div>
+    </div>
+    <script>
+        // Pojavljivanje cele stranice prilikom skrolovanja
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector(".header").style.opacity = "1";
+            document.querySelector(".header").style.transform = "translateY(0)";
+        });
+
+        // Animacija za ostale elemente pri skrolovanju
+        const elements = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

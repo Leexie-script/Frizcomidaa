@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recepti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        RECEPTI
+    </header>
+
+    <main>
+        <div class="container">
+        <div class="recept">
+            <img src="KASA SA BOROVNICAMA.png" alt="Slika recepta" class="recept-slika">
+            <div class="tekst">
+                <h2>CALE</h2>
+                <p>Kremasta čorba od karfiola je savršena opcija za hladnije dane kada želite lagano, ali hranljivo jelo. Bogata vlaknima i vitaminima, ova čorba pomaže jačanju imuniteta i doprinosi osećaju sitosti. Idealna je za sve koji žele zdravo uživanje u svakom zalogaju.</p>
+                
+                <!-- Dugme u obliku slike sa hover efektom -->
+                <a href="Recepti_unutar.html" class="slika-dugme">
+                    <img src="image-removebg-preview (20).png" alt="Klikni za više" class="dugme-normalno">
+                    <img src="image-removebg-preview (21).png" alt="Klikni za više" class="dugme-hover">
+                </a>
+            </div>
+        </div>
+        <div class="recept">
+            <img src="KASA SA BOROVNICAMA.png" alt="Slika recepta" class="recept-slika">
+            <div class="tekst">
+                <h2>JE</h2>
+                <p>Kremasta čorba od karfiola je savršena opcija za hladnije dane kada želite lagano, ali hranljivo jelo. Bogata vlaknima i vitaminima, ova čorba pomaže jačanju imuniteta i doprinosi osećaju sitosti. Idealna je za sve koji žele zdravo uživanje u svakom zalogaju.</p>
+                
+                <!-- Dugme u obliku slike sa hover efektom -->
+                <a href="#" class="slika-dugme">
+                    <img src="image-removebg-preview (20).png" alt="Klikni za više" class="dugme-normalno">
+                    <img src="image-removebg-preview (21).png" alt="Klikni za više" class="dugme-hover">
+                </a>
+            </div>
+        </div>
+        <div class="recept">
+            <img src="KASA SA BOROVNICAMA.png" alt="Slika recepta" class="recept-slika">
+            <div class="tekst">
+                <h2>MOJ</h2>
+                <p>Kremasta čorba od karfiola je savršena opcija za hladnije dane kada želite lagano, ali hranljivo jelo. Bogata vlaknima i vitaminima, ova čorba pomaže jačanju imuniteta i doprinosi osećaju sitosti. Idealna je za sve koji žele zdravo uživanje u svakom zalogaju.</p>
+                
+                <!-- Dugme u obliku slike sa hover efektom -->
+                <a href="#" class="slika-dugme">
+                    <img src="image-removebg-preview (20).png" alt="Klikni za više" class="dugme-normalno">
+                    <img src="image-removebg-preview (21).png" alt="Klikni za više" class="dugme-hover">
+                </a>
+            </div>
+        </div>
+        <div class="recept">
+            <img src="KASA SA BOROVNICAMA.png" alt="Slika recepta" class="recept-slika">
+            <div class="tekst">
+                <h2>BURAZER</h2>
+                <p>Kremasta čorba od karfiola je savršena opcija za hladnije dane kada želite lagano, ali hranljivo jelo. Bogata vlaknima i vitaminima, ova čorba pomaže jačanju imuniteta i doprinosi osećaju sitosti. Idealna je za sve koji žele zdravo uživanje u svakom zalogaju.</p>
+                
+                <!-- Dugme u obliku slike sa hover efektom -->
+                <a href="#" class="slika-dugme">
+                    <img src="image-removebg-preview (20).png" alt="Klikni za više" class="dugme-normalno">
+                    <img src="image-removebg-preview (21).png" alt="Klikni za više" class="dugme-hover">
+                </a>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>
+</html>
+
+
+
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transform: scale(1.35); /* Uvećava ceo sajt za 135% */
+    transform-origin: top center; /* Održava centriran izgled */
+    
+}
+
+header {
+    background-color: #000e38; /* Tamno plava boja */
+    color: white;
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    padding: 50px;
+    
+    
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    
+}
+
+.recept {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-width: 900px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(-20px); /* Pomera celu sekciju malo ulevo */
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Razmak između recepata */
+    padding-bottom: 50px;
+}
+
+/* Pomeri sliku malo ulevo */
+.recept-slika {
+    width: 40%;
+    height: auto;
+    border-radius: 40px;
+    transform: translateX(-20px); /* Pomera sliku dodatno ulevo */
+}
+
+/* Pomeri tekst malo udesno */
+.tekst {
+    flex: 1;
+    padding-left: 40px; /* Povećan razmak između slike i teksta */
+}
+
+.tekst h2 {
+    margin: 0;
+    color: #000e38;
+    text-align: center;
+}
+
+.tekst p {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+/* Dugme - default slika */
+.slika-dugme {
+    display: block;
+    margin-top: 20px;
+    width: 150px;
+    height: auto;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slika-dugme img {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+/* Sakrij hover sliku po defaultu */
+.slika-dugme .dugme-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Kada pređemo mišem preko dugmeta, prikaži hover sliku */
+.slika-dugme:hover .dugme-normalno {
+    opacity: 0;
+}
+
+.slika-dugme:hover .dugme-hover {
+    opacity: 1;
+    transform: scale(1.1); /* Lagani zoom na hover */
+}
+
+
+
+</style>

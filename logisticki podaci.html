@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frizcomida - Logistički podaci</title>
+    <style>
+        body {
+            font-family: 'League Spartan',sans-serif;
+            
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        main {
+            width: 80%;
+            padding: 20px;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            padding-top: 30px;
+        }
+        .search-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-container input {
+            width: 300px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .search-container button {
+            background-color: #000e38;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            font-size: 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .category-menu {
+            display: flex;
+            justify-content: left;
+            gap: 20px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            padding-bottom: 5px;
+            
+        }
+        .category-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .category-menu a.active {
+            padding-bottom: 3px;
+            color: red;
+        }
+        table {
+            width: 100%;
+            margin-top: 50px;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .product-image {
+            max-width: 50px;
+            height: auto;
+            display: block;
+        }
+        tr {
+            border-bottom: 1px solid #ddd;
+        }
+        .header-container {
+            color: #000e38;
+        }
+        .productTable {
+            color: #000e38;
+        }
+        .logistika {
+            color: #000e38;
+        }
+        tr:hover {
+         background-color: #e6e6e6;
+        }
+        tr:nth-child(even) {
+         background-color: #f9f9f9;
+        }
+        .category-menu a:hover {
+         color: red; /* Tekst postaje crven kada pređeš mišem preko */
+        }
+        td img {
+          display: block;
+          margin: auto;
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="header-container">
+            <h1>Svi proizvodi</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Pretraži proizvode...">
+                <button onclick="searchProducts()">Traži</button>
+            </div>
+        </div>
+        <div class="category-menu">
+            <a href="#" class="active" onclick="filterCategory('all')">Svi proizvodi</a>
+            <a href="#" onclick="filterCategory('riba')">Riba</a>
+            <a href="#" onclick="filterCategory('voce')">Voće</a>
+            <a href="#" onclick="filterCategory('povrce')">Povrće</a>
+            <a href="#" onclick="filterCategory('Mešavine')">Mešavine</a>
+            <a href="#" onclick="filterCategory('gotova')">Gotova jela</a>
+            <a href="#" onclick="filterCategory('pecuraka')">Pečurke</a>
+            <a href="#" onclick="filterCategory('Biljke')">Biljke</a>
+            <a href="#" onclick="filterCategory('sveže')">Sveže voće</a>
+        </div>
+        <table>
+            <thead>
+                <tr class="logistika">
+                    <th>Proizvod</th>
+                    <th></th>
+                    <th>Jedinica mere</th>
+                    <th>Zapremina (ml)</th>
+                    <th>Komada u kutiji</th>
+                    <th>Kutija na paleti</th>
+                    <th>Šifra</th>
+                </tr>
+            </thead>
+            <tbody id="productTable"></tbody>
+        </table>
+    </main>
+    <script>
+        const products = [
+    { name: "Grašak", unit: "kom", volume: 105, box: 30, pallet: 198, code: "06150", barcode: "8606017432661", image: "footerlogg.png", category: "povrce" },
+    { name: "Boranija žuta", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06151", barcode: "8606017433460", image: "image.png", category: "povrce" },
+    { name: "Boranija zelena", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06152", barcode: "8606017433033", image: "boranija_zelena.png", category: "povrce" },
+    { name: "Baby šargarepa", unit: "kg", volume: 500, box: 10, pallet: 80, code: "06153", barcode: "8606017434000", image: "baby_sargarepa.png", category: "povrce" },
+    { name: "Šargarepa kocka", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "06154", barcode: "8606017435000", image: "sargarepa_kocka.png", category: "povrce" },
+    { name: "Kukuruz šećerac", unit: "kg", volume: 750, box: 8, pallet: 50, code: "06155", barcode: "8606017436000", image: "kukuruz_secerac.png", category: "povrce" },
+    { name: "Brokoli", unit: "kom", volume: 105, box: 30, pallet: 198, code: "06156", barcode: "8606017432662", image: "brokoli.png", category: "povrce" },
+    { name: "Karfiol", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06157", barcode: "8606017433461", image: "karfiol.png", category: "povrce" },
+    { name: "Paprika rezana (crvena)", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06158", barcode: "8606017433034", image: "paprika_rezana.png", category: "povrce" },
+    { name: "Spanać", unit: "kg", volume: 500, box: 10, pallet: 80, code: "06159", barcode: "8606017434001", image: "spanac.png", category: "povrce" },
+    { name: "Blitva", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "06160", barcode: "8606017435001", image: "blitva.png", category: "povrce" },
+    { name: "Špargla", unit: "kg", volume: 750, box: 8, pallet: 50, code: "06161", barcode: "8606017436001", image: "spargla.png", category: "povrce" },
+    { name: "Krompir kocka", unit: "kom", volume: 105, box: 30, pallet: 198, code: "06162", barcode: "8606017432663", image: "krompir_kocka.png", category: "povrce" },
+    { name: "Babura", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06163", barcode: "8606017433462", image: "babura.png", category: "povrce" },
+    { name: "Pečena paprika grill", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06164", barcode: "8606017433035", image: "pecena_paprika.png", category: "povrce" },
+    { name: "Jagode", unit: "kom", volume: 105, box: 30, pallet: 198, code: "06165", barcode: "8606017432664", image: "jagode.png", category: "voce" },
+    { name: "Maline", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06166", barcode: "8606017433463", image: "maline.png", category: "voce" },
+    { name: "Borovnice", unit: "kom", volume: 120, box: 20, pallet: 120, code: "06167", barcode: "8606017433036", image: "borovnice.png", category: "voce" },
+    { name: "Kupine", unit: "kg", volume: 500, box: 10, pallet: 80, code: "06168", barcode: "8606017434002", image: "kupine.png", category: "voce" },
+    { name: "Trešnje", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "06169", barcode: "8606017435002", image: "tresnje.png", category: "voce" },
+    { name: "Višnje", unit: "kg", volume: 750, box: 8, pallet: 50, code: "06170", barcode: "8606017436002", image: "visnje.png", category: "voce" },
+    { name: "Breskve", unit: "kom", volume: 105, box: 30, pallet: 198, code: "003216", barcode: "8606017432661", image: "cedevita.png", category: "voce" },
+    { name: "Šljive", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003284", barcode: "8606017433460", image: "jogood_kajsija.png", category: "voce" },
+    { name: "Kajsije", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Jabuke", unit: "kg", volume: 500, box: 10, pallet: 80, code: "003400", barcode: "8606017434000", image: "losos.png", category: "voce" },
+    { name: "Kruške", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "voce" },
+    { name: "Grožđe", unit: "kg", volume: 750, box: 8, pallet: 50, code: "003600", barcode: "8606017436000", image: "sarma.png", category: "voce" },
+    { name: "Nar", unit: "kom", volume: 105, box: 30, pallet: 198, code: "003216", barcode: "8606017432661", image: "cedevita.png", category: "voce" },
+    { name: "Kivi", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003284", barcode: "8606017433460", image: "jogood_kajsija.png", category: "voce" },
+    { name: "Pomorandže", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Limun", unit: "kg", volume: 500, box: 10, pallet: 80, code: "003400", barcode: "8606017434000", image: "losos.png", category: "voce" },
+    { name: "Ananas", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "voce" },
+    { name: "Banane", unit: "kg", volume: 750, box: 8, pallet: 50, code: "003600", barcode: "8606017436000", image: "sarma.png", category: "voce" },
+    { name: "Avokado", unit: "kom", volume: 105, box: 30, pallet: 198, code: "003216", barcode: "8606017432661", image: "cedevita.png", category: "voce" },
+    { name: "Mango", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003284", barcode: "8606017433460", image: "jogood_kajsija.png", category: "voce" },
+    { name: "Papaja", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Sumska Jagoda", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Sumska Borovnica", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Sumska Kupina", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Sumski Mix", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Vocni Mix", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Crvena Ribizla", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Crna Ribizla", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "(Kultivisana) Borovnica", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "voce" },
+    { name: "Mešavina za rusku salatu", unit: "kom", volume: 105, box: 30, pallet: 198, code: "003216", barcode: "8606017432661", image: "cedevita.png", category: "Mešavine" },
+    { name: "Carska Mešavina", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003284", barcode: "8606017433460", image: "jogood_kajsija.png", category: "Mešavine" },
+    { name: "Zlatna Mešavina", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "Mešavine" },
+    { name: "Čorba", unit: "kg", volume: 500, box: 10, pallet: 80, code: "003400", barcode: "8606017434000", image: "losos.png", category: "Mešavine" },
+    { name: "Meksička Mešavina", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "Mešavine" },
+    { name: "Kineska Mešavina", unit: "kg", volume: 750, box: 8, pallet: 50, code: "003600", barcode: "8606017436000", image: "sarma.png", category: "Mešavine" },
+    { name: "Sataraš", unit: "kom", volume: 105, box: 30, pallet: 198, code: "003216", barcode: "8606017432661", image: "cedevita.png", category: "Mešavine" },
+    { name: "Đuveč", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003284", barcode: "8606017433460", image: "jogood_kajsija.png", category: "Mešavine" },
+    { name: "Vege Burgeri", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "gotova" },
+    { name: "Burgeri od Povrća", unit: "kg", volume: 500, box: 10, pallet: 80, code: "003400", barcode: "8606017434000", image: "losos.png", category: "gotova" },
+    { name: "Pomfrit", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "gotova" },
+    { name: "Pomfrit rebrasti", unit: "kg", volume: 750, box: 8, pallet: 50, code: "003600", barcode: "8606017436000", image: "sarma.png", category: "gotova" },
+    { name: "Začinjeni krompir", unit: "kom", volume: 105, box: 30, pallet: 198, code: "003216", barcode: "8606017432661", image: "cedevita.png", category: "gotova" },
+    { name: "Panirani Oslić", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003284", barcode: "8606017433460", image: "jogood_kajsija.png", category: "riba" },
+    { name: "Panirane Lignje", unit: "kom", volume: 120, box: 20, pallet: 120, code: "003255", barcode: "8606017433033", image: "jogood_visnja.png", category: "riba" },
+    { name: "Sveži riblji štapići", unit: "kg", volume: 500, box: 10, pallet: 80, code: "003400", barcode: "8606017434000", image: "losos.png", category: "riba" },
+    { name: "Dimljena Pastrmka", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "riba" },
+    { name: "Lisicara", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "pecuraka" },
+    { name: "Vrganj kocka", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "pecuraka" },
+    { name: "Vrganj suseni", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "pecuraka" },
+    { name: "Sitaka susena", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "pecuraka" },
+    { name: "Mix pecuraka", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "pecuraka" },
+    { name: "Kopriva", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "Biljke" },
+    { name: "Pucavac", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "Biljke" },
+    { name: "Sremus", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "Biljke" },
+    { name: "Marakuja", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "voce" },
+    { name: "Bundeva", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "povrce" },
+    { name: "Aronija", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "voce" },
+    { name: "Brusnica", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "voce" },
+    { name: "Pomorandza", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "sveže" },
+    { name: "Luk kocka", unit: "kg", volume: 1000, box: 5, pallet: 60, code: "003500", barcode: "8606017435000", image: "lignje.png", category: "povrce" },
+
+
+
+
+
+
+
+
+];
+
+           
+        
+
+        let selectedCategory = "all"; // Po defaultu prikazujemo sve proizvode
+
+        function displayProducts(productList) {
+            let table = document.getElementById("productTable");
+            table.innerHTML = "";
+            productList.forEach(product => {
+                let row = `
+                    <tr>
+                        <td><img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.onerror=null; this.src='default.png';"></td>
+                        <td>${product.name}</td>
+                        <td>${product.unit}</td>
+                        <td>${product.volume}</td>
+                        <td>${product.box}</td>
+                        <td>${product.pallet}</td>
+                        <td>${product.code}</td>
+                    </tr>
+                `;
+                table.innerHTML += row;
+            });
+        }
+
+        function filterCategory(category) {
+            selectedCategory = category;
+            document.querySelectorAll(".category-menu a").forEach(link => link.classList.remove("active"));
+            event.target.classList.add("active");
+            let filteredProducts = category === "all" ? products : products.filter(product => product.category === category);
+            displayProducts(filteredProducts);
+        }
+
+        function searchProducts() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(input) && 
+                (selectedCategory === "all" || product.category === selectedCategory)
+            );
+            displayProducts(filteredProducts);
+        }
+
+        window.onload = () => displayProducts(products);
+    </script>
+</body>
+</html>

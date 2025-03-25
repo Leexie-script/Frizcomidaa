@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smrznuti Proizvodi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 300px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        .product {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .product:hover {
+            transform: scale(1.1);
+        }
+        .product-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-details {
+            background: white;
+            padding: 600px;
+            display: flex;
+            flex-direction: row-reverse;
+            max-width: 1200px;
+            width: 100%;
+            border-radius: 20px;
+            align-items: center;
+        }
+        .product-details img {
+            width: 60%; /* Povećava sliku */
+            height: auto;
+            object-fit: cover;
+            margin-left: 50px; /* Pomiče sliku desno */
+        }
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            text-align: left;
+            font-size: 1.2em; /* Povećava tekst */
+            margin-right: 50px; /* Pomiče tekst levo */
+        }
+        .close-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="products"></div>
+    <div id="productPage" class="product-page" style="display: none;">
+        <div class="product-details">
+            <img id="productImage" src="" alt="">
+            <div class="product-info">
+                <h2 id="productName"></h2>
+                <p id="productDescription"></p>
+                <button class="close-btn" onclick="closeProduct()">Zatvori</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const products = [
+            " Sveže Pomorandze","Sveže Jagode"
+           
+        ].map((name, i) => ({
+            id: i + 1,
+            name: name,
+            image: "image.png",
+            description: `Ovo je smrznuti proizvod: ${name}. Kvalitetno smrznuto voće/povrće.`
+        }));
+
+        const productsContainer = document.getElementById("products");
+        const productPage = document.getElementById("productPage");
+        const productImage = document.getElementById("productImage");
+        const productName = document.getElementById("productName");
+        const productDescription = document.getElementById("productDescription");
+
+        products.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("product");
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <p>${product.name}</p>
+            `;
+            productDiv.addEventListener("click", () => openProduct(product));
+            productsContainer.appendChild(productDiv);
+        });
+
+        function openProduct(product) {
+            productImage.src = product.image;
+            productName.textContent = product.name;
+            productDescription.textContent = product.description;
+            productPage.style.display = "flex";
+        }
+
+        function closeProduct() {
+            productPage.style.display = "none";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Frizcomida.rs</title>
+    <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo-container">
+                <img src="logoaloooo.png" alt="Logo kompanije">
+            </div>
+            <ul>
+                <li><a href="naslovna strana.html" target="sadrzaj">Naslovna</a></li>
+                <li class="has-submenu">
+                    <a href="smrznuta_hrana.html" target="sadrzaj">
+                        Naši proizvodi<span class="dots">.</span><span class="dots">.</span><span class="dots">.</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="hrana_riba.html" target="sadrzaj">Riba</a></li>
+                        <li><a href="hrana_voce.html" target="sadrzaj">Voće</a></li>
+                        <li><a href="hrana_povrce.html" target="sadrzaj">Povrće</a></li>
+                        <li><a href="hrana_mesavine.html" target="sadrzaj">Mešavine</a></li>
+                        <li><a href="hrana_gotova.html" target="sadrzaj">Gotova jela</a></li>
+                        <li><a href="hrana_pecurke.html" target="sadrzaj">Pečurke</a></li>
+                        <li><a href="hrana_biljke.html" target="sadrzaj">Biljke</a></li>
+                        <li><a href="hrana_sveze_voce.html" target="sadrzaj">Sveže voće</a></li>
+                    </ul>
+                </li>
+                <li><a href="logisticki podaci.html" target="sadrzaj">Logistički podaci</a></li>
+                <li><a href="najboljaverzijarecepta.html" target="sadrzaj">Da se smrznes recepti</a></li>
+                <li><a href="O nama.html" target="sadrzaj">O nama</a></li>
+                <li><a href="kontakt navigation.html" target="sadrzaj">Kontakt</a></li>
+                
+                
+            </ul>
+        </nav>
+        
+        <main class="content">
+            <iframe name="sadrzaj" src="naslovna strana.html" frameborder="0"></iframe>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p><strong>FRIZCOMIDA D.O.O.</strong></p>
+                <p>Bulevar Kralja Aleksandra 656</p>
+                <p>11000 Beograd, Srbija</p>
+                <p>Telefon: +381 63 369 145</a></p>
+                <p>Email: frizmoida@gmail.com</a></p>
+            </div>
+    
+            <div class="footer-center">
+                <a href="kontakt navigation.html" class="company-link">Frizcomida</a>
+                <p>© FRIZCOMIDA DOO 2025</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/frizcomida/" target="_blank">
+                        <img src="instagram-logo-instagram-icon-transparent-free-png.webp" alt="Instagram">
+                   
+                    <a href="https://frizcomida@gmail.com">
+                        <img src="mail-1454731_1280.webp" alt="Gmail">
+                    <a href="https://pretraga.pkspartner.rs/sr/kompanija/31fee2d630d2fdc9/frizcomida-doo-beograd-palilula" target="_blank">
+                        <img src="linkedin-icon-logo-png-transparent.png" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+    
+            <div class="footer-right">
+                <img src="footerlogg.png"Frizcomida Logo>
+            </div>
+        </div> 
+    </footer>
+</body>
+</html>
+<style>body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+   
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Osigurava da zauzima punu visinu prozora */
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #ffffff; /* Tamnija plava */
+    color: white;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    text-align: left;
+}
+
+.sidebar ul li a {
+    color:#000e38;
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #ff0000; /* Svetlija plava za hover efekat */
+    padding-left: 25px; /* Blagi pomak pri hoveru */
+    border-left: 5px solid white;
+}
+
+.content {
+    flex: 1;
+    height: 100%;
+    overflow: hidden; /* Sprečava dodatno skrolovanje */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Uklanja okvir oko iframe-a */
+}
+
+footer {
+    background-color: #000e38;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+.logo-container {
+    text-align: center;
+    padding: 15px;
+}
+
+.logo-container img {
+    max-width: 80%; /* Ograničava širinu logotipa */
+    height: auto;
+}
+/* Animacija tri tačke */
+.dots {
+    opacity: 0;
+    display: inline-block;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.has-submenu:hover .dots:nth-child(1) { opacity: 1; transition-delay: 0.1s; }
+.has-submenu:hover .dots:nth-child(2) { opacity: 1; transition-delay: 0.2s; }
+.has-submenu:hover .dots:nth-child(3) { opacity: 1; transition-delay: 0.3s; }
+
+/* Stilizacija podmenija */
+.submenu {
+    list-style: none;
+    padding: 300px;
+    margin: 250px;
+    position: absolute;
+    left: 240px;
+    top: 200px; /* Prilagodi visinu prema sidebar-u */
+    width: 220px;
+    background: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    pointer-events: stroke;
+    height: 350px;
+
+    
+}
+
+/* Kada se pređe mišem preko Naši proizvodi, podmeni se pojavljuje */
+.has-submenu:hover .submenu {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Podmeni stavke */
+.submenu li a {
+    display: block;
+    padding: 10px;
+    color: #000e38;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.submenu li a:hover {
+    background: #f0f0f0;
+}
+footer {
+    background-color: #000e38;
+    color: white;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1;
+}
+
+.footer-left p, .footer-center a {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.company-link {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a img {
+    width: 40px;
+    margin: 0 5px;
+}
+
+.footer-right img {
+    width: 150px;
+}
+
+
+</style>
+<script>
+    
+</script>
